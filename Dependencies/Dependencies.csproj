@@ -39,6 +39,7 @@
     <Content Include="Google.GData.Calendar.dll" />
     <Content Include="Google.GData.Client.dll" />
     <Content Include="Google.GData.Extensions.dll" />
+    <Content Include="Newtonsoft.Json.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
