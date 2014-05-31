@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.Google.Calendar", "nCubed.Google.Calendar\nCubed.Google.Calendar.csproj", "{54A3C36D-9D09-490D-92BF-9236B286BE7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal", "nCubed.GooCal\nCubed.GooCal.csproj", "{54A3C36D-9D09-490D-92BF-9236B286BE7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.Google.Calendar.UnitTests", "nCubed.Google.Calendar.UnitTests\nCubed.Google.Calendar.UnitTests.csproj", "{201B4D68-B371-4A33-AA10-A18EFE6E7154}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal.UnitTests", "nCubed.GooCal.UnitTests\nCubed.GooCal.UnitTests.csproj", "{201B4D68-B371-4A33-AA10-A18EFE6E7154}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FA61B8C5-6C0B-49AE-A3FB-D41C92328C55}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,9 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FA61B8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Dependencies", "_Dependencies", "{08418755-BC7E-4A4F-BB1F-A0E1F0123B3B}"
+	ProjectSection(SolutionItems) = preProject
+		_lib\Google.GData.AccessControl.DLL = _lib\Google.GData.AccessControl.DLL
+		_lib\Google.GData.Calendar.dll = _lib\Google.GData.Calendar.dll
+		_lib\Google.GData.Client.dll = _lib\Google.GData.Client.dll
+		_lib\Google.GData.Extensions.dll = _lib\Google.GData.Extensions.dll
+		_lib\Newtonsoft.Json.dll = _lib\Newtonsoft.Json.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,17 +40,8 @@ Global
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Release|Any CPU.Build.0 = Release|Any CPU
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Staging|Any CPU.Build.0 = Release|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Staging|Any CPU.ActiveCfg = Release|Any CPU
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0}.Staging|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{515A9631-68D1-4BCD-9370-7AAD7D8A88C0} = {08418755-BC7E-4A4F-BB1F-A0E1F0123B3B}
 	EndGlobalSection
 EndGlobal

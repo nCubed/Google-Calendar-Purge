@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Security.Authentication;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace nCubed.Google.Calendar.UnitTests
+namespace nCubed.GooCal.UnitTests
 {
     [TestClass]
     public class CalendarConnectionTests
@@ -34,11 +33,11 @@ namespace nCubed.Google.Calendar.UnitTests
         }
 
         [TestMethod]
-        [ExpectedException( typeof( InvalidCredentialException ) )]
+        [ExpectedException( typeof( Google.GData.Client.InvalidCredentialsException ) )]
         public void Connect_InvalidCredentials_ThrowsException()
         {
-            _creds.Setup(x => x.UserName).Returns("InvalidName");
-            _creds.Setup(x => x.Password).Returns("InvalidPassword");
+            _creds.Setup( x => x.UserName ).Returns( "InvalidName" );
+            _creds.Setup( x => x.Password ).Returns( "InvalidPassword" );
 
             var c = new CalendarConnection();
 

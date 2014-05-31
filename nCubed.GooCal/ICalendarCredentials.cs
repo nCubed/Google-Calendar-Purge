@@ -1,4 +1,4 @@
-﻿namespace nCubed.Google.Calendar
+﻿namespace nCubed.GooCal
 {
     /// <summary>
     /// Interface for authenticating to a specific Google Calendar.
