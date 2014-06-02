@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Dependencies", "_Dependenc
 		_lib\Newtonsoft.Json.dll = _lib\Newtonsoft.Json.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal.IntegrationTests", "nCubed.GooCal.IntegrationTests\nCubed.GooCal.IntegrationTests.csproj", "{A25FCC73-22EA-4813-81E4-877D73B7B8FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,12 @@ Global
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Release|Any CPU.Build.0 = Release|Any CPU
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{201B4D68-B371-4A33-AA10-A18EFE6E7154}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{A25FCC73-22EA-4813-81E4-877D73B7B8FC}.Staging|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
