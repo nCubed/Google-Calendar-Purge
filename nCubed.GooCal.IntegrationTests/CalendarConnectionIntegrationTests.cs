@@ -5,7 +5,7 @@ using nCubed.GooCal.Common;
 namespace nCubed.GooCal.IntegrationTests
 {
     [TestClass]
-    public class CalendarConnectionTests
+    public class CalendarConnectionIntegrationTests
     {
         private Mock<ICalendarCredentials> _creds;
 

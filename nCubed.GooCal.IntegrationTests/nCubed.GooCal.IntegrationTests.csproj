@@ -70,14 +70,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CalendarConnectionTests.cs" />
+    <Compile Include="CalendarConnectionIntegrationTests.cs" />
+    <Compile Include="CalendarPurgeIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nCubed.GooCal\nCubed.GooCal.Common.csproj">
+    <ProjectReference Include="..\nCubed.GooCal.Common\nCubed.GooCal.Common.csproj">
       <Project>{54a3c36d-9d09-490d-92bf-9236b286be7a}</Project>
       <Name>nCubed.GooCal.Common</Name>
     </ProjectReference>
