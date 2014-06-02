@@ -7,8 +7,8 @@
     <ProjectGuid>{54A3C36D-9D09-490D-92BF-9236B286BE7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nCubed.GooCal</RootNamespace>
-    <AssemblyName>nCubed.GooCal</AssemblyName>
+    <RootNamespace>nCubed.GooCal.Common</RootNamespace>
+    <AssemblyName>nCubed.GooCal.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE;RELEASE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\nCubed.GooCal.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\nCubed.GooCal.Common.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
     <OutputPath>bin\Staging\</OutputPath>

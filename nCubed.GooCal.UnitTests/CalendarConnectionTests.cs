@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using nCubed.GooCal.Common;
 
 namespace nCubed.GooCal.UnitTests
 {

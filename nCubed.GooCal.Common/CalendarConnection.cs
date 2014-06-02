@@ -1,7 +1,7 @@
 ﻿using System;
 using Google.GData.Calendar;
 
-namespace nCubed.GooCal
+namespace nCubed.GooCal.Common
 {
     internal class CalendarConnection : ICalendarConnection
     {

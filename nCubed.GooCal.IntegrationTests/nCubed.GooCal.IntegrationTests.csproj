@@ -77,9 +77,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nCubed.GooCal\nCubed.GooCal.csproj">
+    <ProjectReference Include="..\nCubed.GooCal\nCubed.GooCal.Common.csproj">
       <Project>{54a3c36d-9d09-490d-92bf-9236b286be7a}</Project>
-      <Name>nCubed.GooCal</Name>
+      <Name>nCubed.GooCal.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace nCubed.GooCal
+namespace nCubed.GooCal.Common
 {
     /// <summary>
     /// Interface for purging events from a Google Calendar.

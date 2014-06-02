@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal", "nCubed.GooCal\nCubed.GooCal.csproj", "{54A3C36D-9D09-490D-92BF-9236B286BE7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal.Common", "nCubed.GooCal.Common\nCubed.GooCal.Common.csproj", "{54A3C36D-9D09-490D-92BF-9236B286BE7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal.UnitTests", "nCubed.GooCal.UnitTests\nCubed.GooCal.UnitTests.csproj", "{201B4D68-B371-4A33-AA10-A18EFE6E7154}"
 EndProject

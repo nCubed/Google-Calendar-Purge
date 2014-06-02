@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using nCubed.GooCal.Common;
 
 namespace nCubed.GooCal.IntegrationTests
 {

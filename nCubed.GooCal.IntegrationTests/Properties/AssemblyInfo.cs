@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("nCubed.GooCal.IntegrationTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SolArc, Inc.")]
+[assembly: AssemblyCompany( "nCubed" )]
 [assembly: AssemblyProduct("nCubed.GooCal.IntegrationTests")]
-[assembly: AssemblyCopyright("Copyright © SolArc, Inc. 2014")]
+[assembly: AssemblyCopyright( "Copyright © nCubed 2014" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

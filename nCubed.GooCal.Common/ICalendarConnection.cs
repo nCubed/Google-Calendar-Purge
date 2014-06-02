@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace nCubed.GooCal
+namespace nCubed.GooCal.Common
 {
     /// <summary>
     /// Interface for connecting to a specific Google Calendar.
