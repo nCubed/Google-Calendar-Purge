@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using nCubed.GooCal.Common;
 
 namespace nCubed.GooCal.UnitTests
@@ -7,6 +8,14 @@ namespace nCubed.GooCal.UnitTests
     [TestClass]
     public class CalendarPurgeTests
     {
+        private Mock<IGoogleCalendarService> _service ;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _service = new Mock<IGoogleCalendarService>(MockBehavior.Strict);
+        }
+
         [TestMethod]
         public void Class_Implements_ICalendarPurge()
         {
@@ -21,7 +30,7 @@ namespace nCubed.GooCal.UnitTests
         [ExpectedException( typeof( NotImplementedException ) )]
         public void PurgeAll_NotImplemented()
         {
-            var calPurge = new CalendarPurge();
+            var calPurge = new CalendarPurge(_service.Object,"url");
 
             calPurge.PurgeAll();
         }
@@ -30,7 +39,7 @@ namespace nCubed.GooCal.UnitTests
         [ExpectedException( typeof( NotImplementedException ) )]
         public void Purge_NotImplemented()
         {
-            var calPurge = new CalendarPurge();
+            var calPurge = new CalendarPurge(_service.Object,"url");
             var start = new DateTime( 2014, 1, 1 );
             var end = new DateTime( 2014, 1, 31 );
 
@@ -41,7 +50,7 @@ namespace nCubed.GooCal.UnitTests
         [ExpectedException( typeof( NotImplementedException ) )]
         public void HasEvents_NotImplemented()
         {
-            var calPurge = new CalendarPurge();
+            var calPurge = new CalendarPurge(_service.Object, "url");
 
             calPurge.HasEvents();
         }
