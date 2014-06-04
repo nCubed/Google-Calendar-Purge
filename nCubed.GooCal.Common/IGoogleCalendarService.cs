@@ -8,14 +8,6 @@ namespace nCubed.GooCal.Common
     /// </summary>
     public interface IGoogleCalendarService
     {
-        // ReSharper disable once InconsistentNaming
-        /// <summary>
-        /// Sets the user credentials.
-        /// </summary>
-        /// <param name="userName">The Google username.</param>
-        /// <param name="password">The user's password.</param>
-        void setUserCredentials( string userName, string password );
-
         /// <summary>
         /// Queries the Google Calendar.
         /// </summary>

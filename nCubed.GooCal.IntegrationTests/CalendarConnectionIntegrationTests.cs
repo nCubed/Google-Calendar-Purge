@@ -4,6 +4,7 @@ using nCubed.GooCal.Common;
 
 namespace nCubed.GooCal.IntegrationTests
 {
+    [Ignore]
     [TestClass]
     public class CalendarConnectionIntegrationTests
     {

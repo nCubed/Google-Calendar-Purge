@@ -24,5 +24,15 @@ namespace nCubed.GooCal.UnitTests
             using( new CalendarConnection() )
             { }
         }
+
+        [TestMethod]
+        public void Class_IsInternal()
+        {
+            var type = typeof( CalendarConnection );
+
+            bool isInternal = type.IsNotPublic;
+
+            Assert.IsTrue( isInternal );
+        }
     }
 }

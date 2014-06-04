@@ -5,6 +5,11 @@ namespace nCubed.GooCal.Common
 {
     internal class CalendarPurge : ICalendarPurge
     {
+        public CalendarPurge( IGoogleCalendarService service, string calendarUrl )
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<string> PurgeAll()
         {
             throw new NotImplementedException();

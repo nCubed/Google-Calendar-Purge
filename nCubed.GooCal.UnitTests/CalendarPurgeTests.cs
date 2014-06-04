@@ -45,5 +45,15 @@ namespace nCubed.GooCal.UnitTests
 
             calPurge.HasEvents();
         }
+
+        [TestMethod]
+        public void Class_IsInternal()
+        {
+            var type = typeof( CalendarPurge );
+
+            bool isInternal = type.IsNotPublic;
+
+            Assert.IsTrue( isInternal );
+        }
     }
 }

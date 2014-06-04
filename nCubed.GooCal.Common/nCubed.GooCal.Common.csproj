@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="CalendarConnection.cs" />
     <Compile Include="CalendarPurge.cs" />
+    <Compile Include="CalendarPurgeFactory.cs" />
+    <Compile Include="CalendarServiceAdapter.cs" />
     <Compile Include="ICalendarConnection.cs" />
     <Compile Include="ICalendarCredentials.cs" />
     <Compile Include="ICalendarPurge.cs" />

@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace nCubed.GooCal.IntegrationTests
 {
+    [Ignore]
     [TestClass]
     public class CalendarPurgeIntegrationTests
     {
