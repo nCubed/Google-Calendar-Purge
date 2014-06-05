@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Google.GData.Calendar;
 
 namespace nCubed.GooCal.Common
 {
     internal class CalendarPurge : ICalendarPurge
     {
+        private readonly IGoogleCalendarService _service;
+        private readonly string _calendarUrl;
+
         public CalendarPurge( IGoogleCalendarService service, string calendarUrl )
         {
-            throw new NotImplementedException();
+            _service = service;
+            _calendarUrl = calendarUrl;
         }
 
         public IEnumerable<string> PurgeAll()
@@ -22,7 +28,11 @@ namespace nCubed.GooCal.Common
 
         public bool HasEvents()
         {
-            throw new NotImplementedException();
+            var query = new EventQuery( _calendarUrl );
+
+            EventFeed feed = _service.Query( query );
+
+            return feed.Entries.Any();
         }
     }
 }
