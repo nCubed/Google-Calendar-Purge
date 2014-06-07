@@ -4,7 +4,7 @@ using Google.GData.Client;
 namespace nCubed.GooCal.Common
 {
     /// <summary>
-    /// Adapter for the Google <see cref="CalendarService"/> class
+    /// Adapter for the Google <see cref="Google.GData.Calendar.CalendarService"/> class.
     /// </summary>
     public interface IGoogleCalendarService
     {

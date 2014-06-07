@@ -5,7 +5,7 @@ using Google.GData.Calendar;
 
 namespace nCubed.GooCal.Common
 {
-    internal class CalendarPurge : ICalendarPurge
+    internal sealed class CalendarPurge : ICalendarPurge
     {
         private readonly IGoogleCalendarService _service;
         private readonly string _calendarUrl;

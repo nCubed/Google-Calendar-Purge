@@ -37,10 +37,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.GData.AccessControl, Version=2.2.0.0, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_lib\Google.GData.AccessControl.DLL</HintPath>
-    </Reference>
     <Reference Include="Google.GData.Calendar, Version=2.2.0.0, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_lib\Google.GData.Calendar.dll</HintPath>
@@ -49,16 +45,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_lib\Google.GData.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Google.GData.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_lib\Google.GData.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -75,8 +63,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestUtils\AssertClass.cs" />
+    <Compile Include="CalendarPurgeFactoryTests.cs" />
+    <Compile Include="CalendarServiceAdapterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CalendarConnectionTests.cs" />
     <Compile Include="CalendarPurgeTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ namespace nCubed.GooCal.Common
     /// Adapater class to expose a subset of the Google <see cref="CalendarService"/>
     /// as an interface.
     /// </summary>
-    internal class CalendarServiceAdapter : CalendarService, IGoogleCalendarService
+    internal sealed class CalendarServiceAdapter : CalendarService, IGoogleCalendarService
     {
         public CalendarServiceAdapter( string applicationName )
             : base( applicationName )

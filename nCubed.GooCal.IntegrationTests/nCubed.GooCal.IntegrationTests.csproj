@@ -37,25 +37,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.GData.AccessControl">
-      <HintPath>..\_lib\Google.GData.AccessControl.DLL</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Calendar">
-      <HintPath>..\_lib\Google.GData.Calendar.dll</HintPath>
-    </Reference>
     <Reference Include="Google.GData.Client">
       <HintPath>..\_lib\Google.GData.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Extensions">
-      <HintPath>..\_lib\Google.GData.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\_lib\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -70,8 +60,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CalendarConnectionIntegrationTests.cs" />
+    <Compile Include="CalendarPurgeFactoryIntegrationTests.cs" />
     <Compile Include="CalendarPurgeIntegrationTests.cs" />
+    <Compile Include="_Credentials\GooCalCreds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +73,11 @@
       <Project>{54a3c36d-9d09-490d-92bf-9236b286be7a}</Project>
       <Name>nCubed.GooCal.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_Credentials\_GooCalCreds.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

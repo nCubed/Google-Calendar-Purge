@@ -1,8 +1,10 @@
 ﻿using System;
 using Google.GData.Calendar;
+using Google.GData.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using nCubed.GooCal.Common;
+using nCubed.GooCal.UnitTests.TestUtils;
 
 namespace nCubed.GooCal.UnitTests
 {
@@ -22,20 +24,19 @@ namespace nCubed.GooCal.UnitTests
         [TestMethod]
         public void Class_Implements_ICalendarPurge()
         {
-            var type = typeof( CalendarPurge );
-
-            bool isAssignable = typeof( ICalendarPurge ).IsAssignableFrom( type );
-
-            Assert.IsTrue( isAssignable );
+            AssertClass.ImplementsInterface<CalendarPurge, ICalendarPurge>();
         }
 
         [TestMethod]
-        [ExpectedException( typeof( NotImplementedException ) )]
-        public void PurgeAll_NotImplemented()
+        public void Class_IsInternal()
         {
-            var calPurge = new CalendarPurge( _service.Object, "url" );
+            AssertClass.IsInternal<CalendarPurge>();
+        }
 
-            calPurge.PurgeAll();
+        [TestMethod]
+        public void Class_IsSealed()
+        {
+            AssertClass.IsSealed<CalendarPurge>();
         }
 
         [TestMethod]
@@ -50,23 +51,38 @@ namespace nCubed.GooCal.UnitTests
         }
 
         [TestMethod]
-        public void Class_IsInternal()
+        [ExpectedException( typeof( NotImplementedException ) )]
+        public void PurgeAll_NotImplemented()
         {
-            var type = typeof( CalendarPurge );
+            var calPurge = new CalendarPurge( _service.Object, "url" );
 
-            bool isInternal = type.IsNotPublic;
-
-            Assert.IsTrue( isInternal );
+            calPurge.PurgeAll();
         }
 
         [TestMethod]
         public void HasEvents_NoEvents_ReturnsFalse()
         {
-            _service.Setup( x => x.Query( It.IsAny<EventQuery>() ) ).Returns( new EventFeed( new Uri( "http://www.google.com" ), null ) );
+            var feed = new EventFeed( null, null );
+            feed.Entries.Clear();
+
+            _service.Setup( x => x.Query( It.IsAny<EventQuery>() ) ).Returns( feed );
 
             bool hasEvents = _calendarPurge.HasEvents();
 
             Assert.IsFalse( hasEvents );
+        }
+
+        [TestMethod]
+        public void HasEvents_WithEvents_ReturnsTrue()
+        {
+            var feed = new EventFeed( null, null );
+            feed.Entries.Add( new AtomEntry() );
+
+            _service.Setup( x => x.Query( It.IsAny<EventQuery>() ) ).Returns( feed );
+
+            bool hasEvents = _calendarPurge.HasEvents();
+
+            Assert.IsTrue( hasEvents );
         }
     }
 }
