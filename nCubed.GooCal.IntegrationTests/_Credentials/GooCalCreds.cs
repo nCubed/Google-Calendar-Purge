@@ -41,5 +41,10 @@ namespace nCubed.GooCal.IntegrationTests._Credentials
             Password = doc.Root.Element( "Password" ).Value;
             // ReSharper restore PossibleNullReferenceException
         }
+
+        public void OverrideCalendarUrl( string url )
+        {
+            CalendarUrl = url;
+        }
     }
 }

@@ -5,6 +5,9 @@ using nCubed.GooCal.IntegrationTests._Credentials;
 
 namespace nCubed.GooCal.IntegrationTests
 {
+    // TODO: Create test for validating the user supplied calendar URL when creating the ICalendarCredentials.
+    //       The Google API will throw an System.ArgumentException: The query argument MUST contain a valid Uri Parameter name: feedQuery
+
     [TestClass]
     public class CalendarPurgeFactoryIntegrationTests
     {
@@ -18,6 +21,17 @@ namespace nCubed.GooCal.IntegrationTests
 
             // ReSharper disable once UnusedVariable
             ICalendarPurge purge = CalendarPurgeFactory.Create( creds.Object );
+        }
+
+        [TestMethod]
+        [ExpectedException( typeof( Google.GData.Client.AuthenticationException ) )]
+        public void Create_InvalidCalendarUrl_ThrowsException()
+        {
+            var creds = new GooCalCreds();
+            creds.OverrideCalendarUrl( creds.CalendarUrl.Replace( "/private/", "/public/" ) );
+
+            // ReSharper disable once UnusedVariable
+            ICalendarPurge purge = CalendarPurgeFactory.Create( creds );
         }
 
         [TestMethod]

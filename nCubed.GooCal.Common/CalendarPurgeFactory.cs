@@ -1,4 +1,7 @@
-﻿namespace nCubed.GooCal.Common
+﻿using System.Net;
+using Google.GData.Calendar;
+
+namespace nCubed.GooCal.Common
 {
     public static class CalendarPurgeFactory
     {
@@ -14,12 +17,71 @@
 
             service.setUserCredentials( credentials.UserName, credentials.Password );
 
-            // The query will throw an InvalidCredentialsException if credentials cannot be authenticated.
-            service.QueryClientLoginToken();
+            Validate( credentials, service );
 
             var purge = new CalendarPurge( service, credentials.CalendarUrl );
 
             return purge;
+        }
+
+        private static void Validate( ICalendarCredentials credentials, CalendarServiceAdapter service )
+        {
+            var validator = new Validator( credentials, service );
+
+            validator.Validate();
+        }
+
+        private class Validator
+        {
+            private readonly ICalendarCredentials _credentials;
+            private readonly CalendarServiceAdapter _service;
+
+            public Validator( ICalendarCredentials credentials, CalendarServiceAdapter service )
+            {
+                _credentials = credentials;
+                _service = service;
+            }
+
+            public void Validate()
+            {
+                ValidateLogin();
+                ValidateCalendarUrl();
+            }
+
+            private void ValidateLogin()
+            {
+                // The query will throw an InvalidCredentialsException if credentials cannot be authenticated.
+                _service.QueryClientLoginToken();
+            }
+
+            private void ValidateCalendarUrl()
+            {
+                var calQuery = new CalendarQuery( _credentials.CalendarUrl );
+
+                try
+                {
+                    _service.Query( calQuery );
+                }
+                catch( Google.GData.Client.GDataRequestException ex )
+                {
+                    // this will occur when the calendar URL is invalid, i.e.,
+                    // the calendar hasn't been shared as public, but they inluced public in the url:
+                    // http://www.google.com/calendar/feeds/UserName%40gmail.com/public/basic
+                    // should be:
+                    // http://www.google.com/calendar/feeds/UserName%40gmail.com/private/basic
+
+                    // TODO: try correcting the URL by replacing public with private and re-authenticating, if fails, throw same exception as currenlty throwing.
+
+                    if( ex.InnerException is WebException && ex.InnerException.Message == "The remote server returned an error: (403) Forbidden." )
+                    {
+                        string msg = string.Format( "{0} : {1}", ex.InnerException.Message, ex.Message );
+                        throw new Google.GData.Client.AuthenticationException( msg, ex );
+                    }
+
+                    throw;
+                }
+            }
+
         }
     }
 }
