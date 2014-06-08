@@ -18,7 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Dependencies", "_Dependenc
 		_lib\Google.GData.Calendar.dll = _lib\Google.GData.Calendar.dll
 		_lib\Google.GData.Client.dll = _lib\Google.GData.Client.dll
 		_lib\Google.GData.Extensions.dll = _lib\Google.GData.Extensions.dll
-		_lib\Newtonsoft.Json.dll = _lib\Newtonsoft.Json.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nCubed.GooCal.IntegrationTests", "nCubed.GooCal.IntegrationTests\nCubed.GooCal.IntegrationTests.csproj", "{A25FCC73-22EA-4813-81E4-877D73B7B8FC}"
