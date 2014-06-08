@@ -19,7 +19,7 @@ namespace nCubed.GooCal.IntegrationTests
         }
 
         [TestMethod]
-        public void HasEvents_WithEvents_ReturnsFalse()
+        public void HasEvents_WithEvents_ReturnsTrue()
         {
             ICalendarPurge purge = CalendarPurgeFactory.Create( _creds );
 
