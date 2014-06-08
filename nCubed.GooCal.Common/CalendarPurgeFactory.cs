@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Google.GData.Calendar;
+using Google.GData.Client;
 
 namespace nCubed.GooCal.Common
 {
@@ -13,9 +14,10 @@ namespace nCubed.GooCal.Common
         /// <exception cref="Google.GData.Client.InvalidCredentialsException"></exception>
         public static ICalendarPurge Create( ICalendarCredentials credentials )
         {
-            var service = new CalendarServiceAdapter( "GooCalPurge" );
-
-            service.setUserCredentials( credentials.UserName, credentials.Password );
+            var service = new CalendarServiceAdapter( "GooCalPurge" )
+            {
+                Credentials = new GDataCredentials( credentials.UserName, credentials.Password )
+            };
 
             Validate( credentials, service );
 
@@ -50,10 +52,13 @@ namespace nCubed.GooCal.Common
 
             private void ValidateLogin()
             {
-                // The query will throw an InvalidCredentialsException if credentials cannot be authenticated.
+                // The query will throw Google.GData.Client.InvalidCredentialsException if credentials cannot be authenticated.
                 _service.QueryClientLoginToken();
             }
 
+            /// <summary>
+            /// Attempts to capture a Google.GData.Client.GDataRequestException.
+            /// </summary>
             private void ValidateCalendarUrl()
             {
                 var calQuery = new CalendarQuery( _credentials.CalendarUrl );
@@ -62,7 +67,7 @@ namespace nCubed.GooCal.Common
                 {
                     _service.Query( calQuery );
                 }
-                catch( Google.GData.Client.GDataRequestException ex )
+                catch( GDataRequestException ex )
                 {
                     // this will occur when the calendar URL is invalid, i.e.,
                     // the calendar hasn't been shared as public, but they inluced public in the url:
@@ -75,7 +80,7 @@ namespace nCubed.GooCal.Common
                     if( ex.InnerException is WebException && ex.InnerException.Message == "The remote server returned an error: (403) Forbidden." )
                     {
                         string msg = string.Format( "{0} : {1}", ex.InnerException.Message, ex.Message );
-                        throw new Google.GData.Client.AuthenticationException( msg, ex );
+                        throw new AuthenticationException( msg, ex );
                     }
 
                     throw;

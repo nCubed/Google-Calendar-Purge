@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Google.GData.Calendar;
+using Google.GData.Client;
 
 namespace nCubed.GooCal.Common
 {
@@ -18,7 +19,29 @@ namespace nCubed.GooCal.Common
 
         public IEnumerable<string> PurgeAll()
         {
-            throw new NotImplementedException();
+            var query = new FeedQuery( _calendarUrl );
+
+            AtomFeed feed = _service.Query( query );
+
+            if( !feed.Entries.Any() )
+            {
+                return Enumerable.Empty<string>();
+            }
+
+            var deleted = new List<string>();
+
+            while( feed.Entries.Any() )
+            {
+                foreach( AtomEntry entry in feed.Entries )
+                {
+                    entry.Delete();
+                    deleted.Add( entry.Title.Text );
+                }
+
+                feed = _service.Query( query );
+            }
+
+            return deleted;
         }
 
         public IEnumerable<string> Purge( DateTime start, DateTime end )

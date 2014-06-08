@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FA61B8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Dependencies", "_Dependencies", "{08418755-BC7E-4A4F-BB1F-A0E1F0123B3B}"
 	ProjectSection(SolutionItems) = preProject
+		_lib\CalendarDemo.cs = _lib\CalendarDemo.cs
 		_lib\Google.GData.AccessControl.DLL = _lib\Google.GData.AccessControl.DLL
 		_lib\Google.GData.Calendar.dll = _lib\Google.GData.Calendar.dll
 		_lib\Google.GData.Client.dll = _lib\Google.GData.Client.dll
