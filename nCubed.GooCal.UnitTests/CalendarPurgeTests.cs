@@ -19,20 +19,26 @@ namespace nCubed.GooCal.UnitTests
         /// </summary>
         private Mock<IService> _service;
         private Mock<IGoogleCalendarService> _calendarService;
-        private ICalendarPurge _calendarPurge;
+        private CalendarPurge _calendarPurge;
 
         [TestInitialize]
-        public void Initialize()
+        public void TestInit()
         {
             _service = new Mock<IService>( MockBehavior.Strict );
             _calendarService = new Mock<IGoogleCalendarService>( MockBehavior.Strict );
-            _calendarPurge = new CalendarPurge( _calendarService.Object, "" );
+            _calendarPurge = new CalendarPurge( _calendarService.Object, string.Empty );
         }
 
         [TestMethod]
         public void Class_Implements_ICalendarPurge()
         {
             AssertClass.ImplementsInterface<CalendarPurge, ICalendarPurge>();
+        }
+
+        [TestMethod]
+        public void Class_Implements_IExposeGoogleCalendarService()
+        {
+            AssertClass.ImplementsInterface<CalendarPurge, IExposeGoogleCalendarService>();
         }
 
         [TestMethod]
@@ -96,19 +102,24 @@ namespace nCubed.GooCal.UnitTests
         }
 
         [TestMethod]
-        public void PurgeAll_WithEvents_ReturnsEventsDeleted()
+        public void PurgeAll_WithEvents_ReturnsDeletedEventTitles()
         {
-            const string entryTitleOne = "1st Entry";
-            const string entryTitleTwo = "2nd Entry";
-            var atomEntryOne = new AtomEntry { Title = new AtomTextConstruct( AtomTextConstructElementType.Title, entryTitleOne ) };
-            var atomEntryTwo = new AtomEntry { Title = new AtomTextConstruct( AtomTextConstructElementType.Title, entryTitleTwo ) };
+            const string entryOneTitle = "1st Entry";
+            const string entryTwoTitle = "2nd Entry";
+            Assert.AreNotEqual( entryOneTitle, entryTwoTitle );
+
+            var entryOne = new AtomEntry { Title = new AtomTextConstruct( AtomTextConstructElementType.Title, entryOneTitle ) };
+            var entryTwo = new AtomEntry { Title = new AtomTextConstruct( AtomTextConstructElementType.Title, entryTwoTitle ) };
+            Assert.AreNotEqual( entryOne.Title.Text, entryTwo.Title.Text );
 
             var feed = new AtomFeed( null, _service.Object );
-            feed.Entries.Add( atomEntryOne );
-            feed.Entries.Add( atomEntryTwo );
+            feed.Entries.Add( entryOne );
+            feed.Entries.Add( entryTwo );
 
-            _service.Setup( x => x.Delete( atomEntryOne ) );
-            _service.Setup( x => x.Delete( atomEntryTwo ) );
+            // setup the only events that should be deleted. 
+            // anything else will throw an exception with MockBehavior.Strict.
+            _service.Setup( x => x.Delete( entryOne ) );
+            _service.Setup( x => x.Delete( entryTwo ) );
 
             bool isFirstCallback = true;
             int callbackCount = 0;
@@ -130,8 +141,8 @@ namespace nCubed.GooCal.UnitTests
 
             Assert.AreEqual( 2, callbackCount );
             Assert.AreEqual( 2, results.Count );
-            Assert.IsTrue( results.Contains( entryTitleOne ) );
-            Assert.IsTrue( results.Contains( entryTitleTwo ) );
+            Assert.IsTrue( results.Contains( entryOneTitle ) );
+            Assert.IsTrue( results.Contains( entryTwoTitle ) );
         }
     }
 }

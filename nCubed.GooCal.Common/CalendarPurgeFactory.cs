@@ -74,8 +74,11 @@ namespace nCubed.GooCal.Common
                     // http://www.google.com/calendar/feeds/UserName%40gmail.com/public/basic
                     // should be:
                     // http://www.google.com/calendar/feeds/UserName%40gmail.com/private/basic
+                    // finally, in order to modify events, the url needs to have the full modifier as well:
+                    // http://www.google.com/calendar/feeds/UserName%40gmail.com/private/full
 
-                    // TODO: try correcting the URL by replacing public with private and re-authenticating, if fails, throw same exception as currenlty throwing.
+                    // TODO: try correcting the URL by replacing /public/ with /private/ and re-authenticating, if fails, throw same exception as currenlty throwing.
+                    // TODO: try correcting the URL by replacing /basic with /full and re-authenticating, if fails, throw same exception as currenlty throwing.
 
                     if( ex.InnerException is WebException && ex.InnerException.Message == "The remote server returned an error: (403) Forbidden." )
                     {
