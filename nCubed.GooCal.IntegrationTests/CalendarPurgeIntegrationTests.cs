@@ -26,7 +26,7 @@ namespace nCubed.GooCal.IntegrationTests
         [ClassInitialize]
         public static void ClassInit( TestContext context )
         {
-            _creds = new GooCalCreds();
+            _creds = GooCalCreds.CreateAndValidate();
             _calendarPurge = (CalendarPurge)CalendarPurgeFactory.Create( _creds );
             _service = _calendarPurge.GoogleCalendarService;
 
@@ -86,7 +86,7 @@ namespace nCubed.GooCal.IntegrationTests
 
             foreach( EventEntry e in entries )
             {
-                Assert.IsTrue( deletedEvents.Contains( e.Title.Text ) );
+                Assert.IsTrue( deletedEvents.Contains( e.Title.Text ), string.Format( "'{0}' was expected to be in the deletedEvents, but was not found.", e.Title.Text ) );
             }
 
             Assert.AreEqual( entryCount, deletedEvents.Count );
@@ -100,6 +100,7 @@ namespace nCubed.GooCal.IntegrationTests
 
         private static void DeleteAllEvents()
         {
+            // we could write a delete all method here, but it'd be identical to the PurgeAll method.
             _calendarPurge.PurgeAll();
 
             // now see if everything really was purged

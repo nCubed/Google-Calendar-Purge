@@ -106,6 +106,14 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>IF NOT EXIST $(ProjectDir)/_Credentials/GooCalCreds.xml (echo ^&lt;?xml version="1.0" encoding="utf-8" ?^&gt;
+echo ^&lt;GooCalCreds^&gt;
+echo   ^&lt;CalendarUrl^&gt;^&lt;/CalendarUrl^&gt;
+echo   ^&lt;UserName^&gt;^&lt;/UserName^&gt;
+echo   ^&lt;Password^&gt;^&lt;/Password^&gt;
+echo ^&lt;/GooCalCreds^&gt;) &gt; $(ProjectDir)/_Credentials/GooCalCreds.xml</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

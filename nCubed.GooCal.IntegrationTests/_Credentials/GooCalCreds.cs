@@ -46,5 +46,16 @@ namespace nCubed.GooCal.IntegrationTests._Credentials
         {
             CalendarUrl = url;
         }
+
+        internal static GooCalCreds CreateAndValidate()
+        {
+            var creds = new GooCalCreds();
+
+            Assert.IsFalse( string.IsNullOrWhiteSpace( creds.UserName ) );
+            Assert.IsFalse( string.IsNullOrWhiteSpace( creds.Password ) );
+            Assert.IsFalse( string.IsNullOrWhiteSpace( creds.CalendarUrl ) );
+
+            return creds;
+        }
     }
 }

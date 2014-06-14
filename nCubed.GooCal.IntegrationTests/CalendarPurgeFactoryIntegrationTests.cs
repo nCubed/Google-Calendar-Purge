@@ -11,6 +11,14 @@ namespace nCubed.GooCal.IntegrationTests
     [TestClass]
     public class CalendarPurgeFactoryIntegrationTests
     {
+        private static ICalendarCredentials _creds;
+
+        [ClassInitialize]
+        public static void ClassInit( TestContext context )
+        {
+            _creds = GooCalCreds.CreateAndValidate();
+        }
+
         [TestMethod]
         [ExpectedException( typeof( Google.GData.Client.InvalidCredentialsException ) )]
         public void Create_InvalidCredentials_ThrowsException()
@@ -28,7 +36,7 @@ namespace nCubed.GooCal.IntegrationTests
         public void Create_InvalidCalendarUrl_ThrowsException()
         {
             var creds = new GooCalCreds();
-            creds.OverrideCalendarUrl( creds.CalendarUrl.Replace( "/private/", "/public/" ) );
+            creds.OverrideCalendarUrl( _creds.CalendarUrl.Replace( "/private/", "/public/" ) );
 
             // ReSharper disable once UnusedVariable
             ICalendarPurge purge = CalendarPurgeFactory.Create( creds );
@@ -37,10 +45,8 @@ namespace nCubed.GooCal.IntegrationTests
         [TestMethod]
         public void Create_ValidCredentials_SuccessfulCreation()
         {
-            ICalendarCredentials creds = new GooCalCreds();
-
             // ReSharper disable once UnusedVariable
-            ICalendarPurge purge = CalendarPurgeFactory.Create( creds );
+            ICalendarPurge purge = CalendarPurgeFactory.Create( _creds );
         }
     }
 }
