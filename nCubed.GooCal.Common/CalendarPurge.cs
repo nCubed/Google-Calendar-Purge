@@ -75,7 +75,24 @@ namespace nCubed.GooCal.Common
         /// <returns>Returns names of calendar events that were deleted.</returns>
         public IEnumerable<string> Purge( DateTime start, DateTime end )
         {
-            throw new NotImplementedException();
+            var query = new EventQuery( _calendarUrl )
+                        {
+                            StartDate = start,
+                            EndDate = end,
+                        };
+
+            EventFeed feed = _service.Query( query );
+
+            var deleted = new List<string>();
+
+            // TODO: (P. Palmer) [2014-06-18] Why are we calling Query over and over again in PurgeAll? What's wrong with this:
+            for( int i = feed.Entries.Count - 1; i >= 0; i-- )
+            {
+                feed.Entries[i].Delete();
+                deleted.Add( feed.Entries[i].Title.Text );
+            }
+
+            return deleted;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Google.GData.Calendar;
 using Google.GData.Client;
+using Google.GData.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using nCubed.GooCal.Common;
@@ -51,17 +52,6 @@ namespace nCubed.GooCal.UnitTests
         public void Class_IsSealed()
         {
             AssertClass.IsSealed<CalendarPurge>();
-        }
-
-        [TestMethod]
-        [ExpectedException( typeof( NotImplementedException ) )]
-        public void Purge_NotImplemented()
-        {
-            var calPurge = new CalendarPurge( _calendarService.Object, "url" );
-            var start = new DateTime( 2014, 1, 1 );
-            var end = new DateTime( 2014, 1, 31 );
-
-            calPurge.Purge( start, end );
         }
 
         [TestMethod]
@@ -143,6 +133,63 @@ namespace nCubed.GooCal.UnitTests
             Assert.AreEqual( 2, results.Count );
             Assert.IsTrue( results.Contains( entryOneTitle ) );
             Assert.IsTrue( results.Contains( entryTwoTitle ) );
+        }
+
+        [TestMethod]
+        public void Purge_NoEventsInRange_ReturnsEmptyList()
+        {
+            var start = new DateTime( 2014, 1, 1 );
+            var end = new DateTime( 2014, 2, 1 );
+
+            var entry = new EventEntry( "EntryOne" );
+            var entryDate = new When( new DateTime( 2014, 3, 1 ), new DateTime( 2014, 3, 1 ) );
+            entry.Times.Add( entryDate );
+
+            var feed = new EventFeed( null, _service.Object );
+            feed.Entries.Add( entry );
+
+            _calendarService.Setup( x => x.Query( It.IsAny<EventQuery>() ) )
+                            .Callback( () => feed.Entries.Remove( feed.Entries[0] ) )
+                            .Returns( feed );
+
+            List<string> results = _calendarPurge.Purge( start, end ).ToList();
+
+            Assert.AreEqual( 0, results.Count );
+        }
+
+        [TestMethod]
+        public void Purge_TwoEventsInRange_ReturnsTwo()
+        {
+            var start = new DateTime( 2014, 1, 1 );
+            var end = new DateTime( 2014, 2, 1 );
+
+            var entryOne = new EventEntry( "EntryOne" );
+            var entryOneDate = new When( new DateTime( 2014, 1, 1 ), new DateTime( 2014, 1, 1 ) );
+            entryOne.Times.Add( entryOneDate );
+
+            var entryTwo = new EventEntry( "EntryOne" );
+            var entryTwoDate = new When( new DateTime( 2014, 2, 1 ), new DateTime( 2014, 2, 1 ) );
+            entryTwo.Times.Add( entryTwoDate );
+
+            var entryThree = new EventEntry( "EntryOne" );
+            var entryThreeDate = new When( new DateTime( 2014, 3, 1 ), new DateTime( 2014, 3, 1 ) );
+            entryThree.Times.Add( entryThreeDate );
+
+            var feed = new EventFeed( null, _service.Object );
+            feed.Entries.Add( entryOne );
+            feed.Entries.Add( entryTwo );
+            feed.Entries.Add( entryThree );
+
+            _service.Setup( x => x.Delete( entryOne ) );
+            _service.Setup( x => x.Delete( entryTwo ) );
+
+            _calendarService.Setup( x => x.Query( It.IsAny<EventQuery>() ) )
+                            .Callback( () => feed.Entries.Remove( feed.Entries[2] ) )
+                            .Returns( feed );
+
+            List<string> results = _calendarPurge.Purge( start, end ).ToList();
+
+            Assert.AreEqual( 2, results.Count );
         }
     }
 }
